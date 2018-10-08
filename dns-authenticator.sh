@@ -15,7 +15,7 @@ sleep_time=30
 #echo "$CERTBOT_VALIDATION"
 
 # create the _acme-challenge txt record
-plesk bin dns -add $CERTBOT_DOMAIN -txt "$CERTBOT_VALIDATION" -domain _acme-challenge
+plesk bin dns --add $CERTBOT_DOMAIN -txt "$CERTBOT_VALIDATION" -domain _acme-challenge
 
 attempt_counter=0
 while true; do
