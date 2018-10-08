@@ -4,7 +4,7 @@
 #CERTBOT_VALIDATION="RNPDCzspbEsMcUMxiq3tD_cBLYcxyNmEbqu9XZFXFgE"
 
 # Google
-#dns_server="8.8.8.8"
+dns_server="8.8.8.8"
 #
 #dns_server="a.root-servers.net"
 max_attempts=20
@@ -15,12 +15,13 @@ sleep_time=30
 #echo "$CERTBOT_VALIDATION"
 
 # create the _acme-challenge txt record
-plesk bin dns -a $CERTBOT_DOMAIN -txt "$CERTBOT_VALIDATION" -domain _acme-challenge
+plesk bin dns -add $CERTBOT_DOMAIN -txt "$CERTBOT_VALIDATION" -domain _acme-challenge
 
 attempt_counter=0
 while true ; do
     if [[ $attempt_counter = $max_attempts ]] ; then
-        echo " Max attempts reached. The creation of the Let's Encrypt cetificate (with dns veefication) will fail"
+        echo "DNS propagation time: $(($attempt_counter*$sleep_time))s"
+        echo "Max attempts reached. The creation of the Let's Encrypt cetificate (with dns veefication) will fail"
         break
     fi
 
@@ -31,9 +32,9 @@ while true ; do
             break 2
         fi
     done
-
-    #printf '.'
+    
     attempt_counter=$(($attempt_counter+1))
+    
     # Sleep to make sure the change has time to propagate over to DNS
     sleep $sleep_time
 done
