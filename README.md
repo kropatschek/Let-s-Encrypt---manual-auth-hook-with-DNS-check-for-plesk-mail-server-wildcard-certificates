@@ -1,9 +1,12 @@
 # Let's Encrypt --manual-auth-hook with DNS check for plesk mail server wildcard certificates
 
+## install
 
-## usage:
+[certbot-auto](https://certbot.eff.org/docs/install.html)
 
 copy dns-authenticator.sh and dns-cleanup.sh to your working directory. 
+
+## usage:
 
 ```bash
 ./certbot/certbot-auto certonly --manual \
