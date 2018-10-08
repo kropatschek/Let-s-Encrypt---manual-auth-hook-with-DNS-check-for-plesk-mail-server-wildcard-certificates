@@ -27,7 +27,7 @@ while true ; do
     for d in $(dig "@$dns_server" -t txt +short "_acme-challenge.$CERTBOT_DOMAIN")
     do
         if [[ "$d" = "\"$CERTBOT_VALIDATION\"" ]] ; then
-            echo "DNS propagation time: $(($attempt_counter*sleep_time))s"
+            echo "DNS propagation time: $(($attempt_counter*$sleep_time))s"
             break 2
         fi
     done
