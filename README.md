@@ -1,6 +1,6 @@
 # Let's Encrypt --manual-auth-hook with DNS check for plesk mail server wildcard certificates
 
-## install
+## install:
 
 [certbot-auto](https://certbot.eff.org/docs/install.html)
 
