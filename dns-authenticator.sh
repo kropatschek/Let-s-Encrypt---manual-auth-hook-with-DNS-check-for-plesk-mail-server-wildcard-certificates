@@ -18,16 +18,15 @@ sleep_time=30
 plesk bin dns -add $CERTBOT_DOMAIN -txt "$CERTBOT_VALIDATION" -domain _acme-challenge
 
 attempt_counter=0
-while true ; do
-    if [[ $attempt_counter = $max_attempts ]] ; then
+while true; do
+    if [[ $attempt_counter = $max_attempts ]]; then
         echo "DNS propagation time: $(($attempt_counter*$sleep_time))s"
         echo "Max attempts reached. The creation of the Let's Encrypt cetificate (with dns veefication) will fail"
         break
     fi
 
-    for d in $(dig "@$dns_server" -t txt +short "_acme-challenge.$CERTBOT_DOMAIN")
-    do
-        if [[ "$d" = "\"$CERTBOT_VALIDATION\"" ]] ; then
+    for d in $(dig "@$dns_server" -t txt +short "_acme-challenge.$CERTBOT_DOMAIN"); do
+        if [[ "$d" = "\"$CERTBOT_VALIDATION\"" ]]; then
             echo "DNS propagation time: $(($attempt_counter*$sleep_time))s"
             break 2
         fi
