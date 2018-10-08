@@ -1,7 +1,7 @@
 # Let's Encrypt --manual-auth-hook with DNS check for plesk mail server wildcard certificates
 
 
-## ussage:
+## usage:
 
 copy dns-authenticator.sh and dns-cleanup.sh to your working directory. 
 
@@ -18,7 +18,7 @@ copy dns-authenticator.sh and dns-cleanup.sh to your working directory.
 ```
 ## install certificate to plesk:
 
-first create
+### first create
 
 ```bash
 plesk bin certificate --create "default" -admin -default \
@@ -26,8 +26,9 @@ plesk bin certificate --create "default" -admin -default \
 -cert-file /etc/letsencrypt/live/example.com/cert.pem \
 -cacert-file /etc/letsencrypt/live/example.com/chain.pem
 ```
+Log in to Plesk and set the generated certificate, named "default", as the default mail server certificate.
 
-afterwards update 
+### afterwards update 
 
 ```bash
 plesk bin certificate --update "default" -admin -default \
